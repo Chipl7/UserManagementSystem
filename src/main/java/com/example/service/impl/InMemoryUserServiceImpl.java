@@ -2,16 +2,15 @@ package com.example.service.impl;
 
 import com.example.entity.User;
 import com.example.repository.InMemoryUserDAO;
-import com.example.service.UserService;
+import com.example.service.UserIntService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class InMemoryUserServiceImpl implements UserService {
+public class InMemoryUserServiceImpl implements UserIntService {
 
     private final InMemoryUserDAO repository;
     @Override

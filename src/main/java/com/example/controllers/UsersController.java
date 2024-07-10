@@ -1,8 +1,10 @@
 package com.example.controllers;
 
 import com.example.entity.User;
+import com.example.service.UserIntService;
 import com.example.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,17 +14,18 @@ import java.util.List;
 @AllArgsConstructor
 public class UsersController {
 
-    private final UserService service;
+    private final UserIntService service;
+    @Autowired private UserService userService;
 
     @GetMapping("/")
     public List<User> findAllUsers() {
-        return service.findAllUsers();
+        return userService.findAll();//service.findAllUsers();
     }
 
     @PostMapping("save_user")
-    public String saveUser(@RequestBody User user){
+    public User saveUser(@RequestBody User user){
         service.saveUser(user);
-        return "User successful save";
+        return userService.save(user);
     }
 
     @GetMapping("/{email}")

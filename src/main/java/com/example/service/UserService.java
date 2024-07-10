@@ -1,14 +1,22 @@
 package com.example.service;
 
 import com.example.entity.User;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.example.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface UserService {
-    List<User> findAllUsers();
-    User saveUser(User user);
-    User findByEmail(String email);
-    User updateUser(User user);
-    void deleteUser(String email);
+@Service
+public class UserService {
+    @Autowired UserRepository userRepository;
+
+    public User save(User user){
+        return userRepository.save(user);
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
 }

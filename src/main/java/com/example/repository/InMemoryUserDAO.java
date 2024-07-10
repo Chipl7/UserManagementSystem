@@ -3,7 +3,6 @@ package com.example.repository;
 import com.example.entity.User;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -21,7 +20,7 @@ public class InMemoryUserDAO {
     }
 
     public User saveUser(User user) {
-        users.add(user);
+        this.users.add(user);
         return user;
     }
 
@@ -37,9 +36,9 @@ public class InMemoryUserDAO {
     }
 
     public User updateUser(User user) {
-        var userIndex = IntStream.range(0, users.size()).filter(index -> users.get(index).getEmail().equals(user.getEmail())).findFirst().orElse(-1);
+        var userIndex = IntStream.range(0, this.users.size()).filter(index -> this.users.get(index).getEmail().equals(user.getEmail())).findFirst().orElse(-1);
         if (userIndex > -1){
-            users.set(userIndex, user);
+            this.users.set(userIndex, user);
             return user;
         }
         return null;

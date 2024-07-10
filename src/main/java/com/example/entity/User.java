@@ -1,19 +1,22 @@
 package com.example.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity
+@Table(name = "Users")
 public class User {
+    @Id
+    @GeneratedValue
+    private Long id;
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;
+    @Column(unique = true)
     private String email;
+    @Transient
     private int age;
 }
 
