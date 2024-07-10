@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UsersController {
 
-    private UserService service;
+    private final UserService service;
 
     @GetMapping("/")
     public List<User> findAllUsers() {
