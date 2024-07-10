@@ -1,20 +1,42 @@
 package com.example.service.impl;
 
 import com.example.entity.User;
+import com.example.repository.InMemoryUserDAO;
 import com.example.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class InMemoryUserServiceImpl implements UserService {
+
+    private final InMemoryUserDAO repository;
     @Override
     public List<User> findAllUsers() {
-        User user1 = new User("Андрей", "Казанцев", LocalDate.of(2000, 10, 18), "Pepa@inbox.ru", 23);
-        User user2 = new User("Ярик", "Карпович", LocalDate.of(2000, 10, 18), "Karovich@mail.ru", 23);
-        User user3 = new User("Булат", "Кусаинов", LocalDate.of(2000, 10, 18), "Postulat@gmail.com", 24);
-        return List.of(user1, user2, user3);
+        return repository.findAllUsers();
     }
+
+    @Override
+    public User saveUser(User user) {
+        return repository.saveUser(user);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
+    @Override
+    public User updateUser(User user) {
+        return repository.updateUser(user);
+    }
+
+    @Override
+    public void deleteUser(String email) {
+        repository.deleteUser(email);
+    }
+
 }

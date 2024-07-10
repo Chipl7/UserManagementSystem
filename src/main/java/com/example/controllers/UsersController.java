@@ -19,6 +19,27 @@ public class UsersController {
         return service.findAllUsers();
     }
 
+    @PostMapping("save_user")
+    public String saveUser(@RequestBody User user){
+        service.saveUser(user);
+        return "User successful save";
+    }
+
+    @GetMapping("/{email}")
+    public User findByEmail(@PathVariable String email){
+        return service.findByEmail(email);
+    }
+
+    @PutMapping("update_user")
+    public User updateUser(@RequestBody User user){
+        return service.updateUser(user);
+    }
+
+    @DeleteMapping("delete_user/{email}")
+    public void deleteUser(@PathVariable String email){
+        service.deleteUser(email);
+    }
+
 //    @GetMapping("/{name}/{lastname}")
 //    public User findAllUsers(@PathVariable String name, @PathVariable String lastname, @RequestParam(required = false) Integer year, @RequestParam String email) {
 //        User user = new User();
